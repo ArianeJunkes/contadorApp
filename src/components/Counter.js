@@ -1,6 +1,5 @@
 import { Component } from 'react';
-import { Button, Text, View, StyleSheet } from 'react-native';
-import { TextInput } from 'react-native-web';
+import { Button, Text, View, TextInput, StyleSheet } from 'react-native';
 
 export default class Counter extends Component {
     state = {
@@ -8,7 +7,9 @@ export default class Counter extends Component {
         step: 2,
     };
     incrementar() {
+        if (this.state.count < this.props.limite){
         this.setState({ count: this.state.count + this.state.step });
+    }
     }
     decrementar() {
         this.setState({ count: this.state.count - 1 });
@@ -22,11 +23,11 @@ export default class Counter extends Component {
     render() {
         return (
             <View style={styles.contador}>
-                <TextInput value={this.state.step}
+                <TextInput value={this.state.step.toString()}
                  onChange={(e) => this.alteraStep(e)}
                  inputMode="numeric"
                  keyboardType='numeric' />
-                 <TextInput value={this.state.step}
+                 <TextInput value={this.state.step.toString()}
                  onChangeText={(text) => this.alteraStep2(text)}
                  inputMode="numeric"
                  keyboardType='numeric' />
@@ -42,5 +43,5 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alingItems: 'center',
     },
-   
+   }
 );
